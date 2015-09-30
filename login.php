@@ -39,7 +39,7 @@
 			if($password_error == "" && $email_error == ""){
 				echo "Võib sisse logida! Kasutajanimi on ".$email." ja parool on ".$password;
 			
-				$hash = hash("sha512", $password);
+				$hash = hash("sha512", $password); //krüpteerib parooli 128 tähemärki.
 				
 				// kasutaja sisselogimise fn, failist functions.php
 				loginUser($email, $hash);
