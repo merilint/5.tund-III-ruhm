@@ -4,6 +4,11 @@
 	require_once("../config_global.php");
 	$database = "if15_meritak";
 	
+	session_start();
+	//tekitatakse sessioon mis salvestatakse serverisse(hoitakse).
+	//kõik session muutujad on kättesaadavad kuni viimane brauseri aken pannakse kinni.
+
+	
 	
 	// võtab andmed ja sisestab ab'i
 	// võtame vastu 2 muutujat
@@ -31,6 +36,12 @@
 		if($stmt->fetch()){
 			// ab'i oli midagi
 			echo "Email ja parool õiged, kasutaja id=".$id_from_db;
+			//tekitan sessiooni muutujad
+			$_SESSION["logged_in_user_id"] = $id_from_db;
+			$_SESSION["logged_in_user_email"] = $email_from_db;
+			
+			//suunan data.php leele
+			header("Location: data.php");
 		}else{
 			// ei leidnud
 			echo "Wrong credentials!";
